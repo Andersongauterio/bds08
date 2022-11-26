@@ -1,0 +1,10 @@
+.sales-navbar-container {
+    border: red 1px solid;
+    margin-bottom: 20px;
+}
+
+.sales-navbar-title {
+    margin-top: 0;
+    padding: 15px 30px;
+    color: var(--primary-color);
+}
