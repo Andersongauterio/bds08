@@ -1,4 +1,13 @@
 .sales-filter-container {
-    border: red 1px solid;
-    margin-bottom: 20px;
+    background-color: #FFFF;
+    border-radius: 5px;
+    margin: 10px;
+    height: 130px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.sales-filter-select__control {
+    width: 280px;
 }

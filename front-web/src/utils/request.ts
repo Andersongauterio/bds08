@@ -1,5 +1,5 @@
 import  axios, { AxiosRequestConfig }  from "axios";
-import { FilterData } from "../types/filterDate";
+import { FilterData } from "../types/filterData";
 
 const baseURL = 'http://localhost:8080';
 
