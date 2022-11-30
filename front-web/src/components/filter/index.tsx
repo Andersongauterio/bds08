@@ -1,19 +1,23 @@
-import { AxiosRequestConfig } from 'axios';
 import { useEffect, useState } from 'react';
 import Select from 'react-select';
+import { FilterData } from '../../types/filterData';
 import { Store } from '../../types/store';
 import { makeRequest } from '../../utils/request';
 import './styles.css';
 
-const Filter = () => {
+type Props = {
+    onFilterChange: (filter: FilterData)=> void
+  };
 
-    const [selectStores, setSelectStores] = useState<Store[]>([]);
+const Filter = ({ onFilterChange }: Props) => {
+
+    const [store, setStore] = useState<Store[]>([]);
 
     useEffect(() => {
         makeRequest
             .get<Store[]>('/stores', {})
             .then((response) => {
-                setSelectStores(response.data);
+                setStore(response.data);
             })
             .catch(() => {
                 console.log('Error to fetch stores');
@@ -23,7 +27,7 @@ const Filter = () => {
     return (
         <div className='sales-filter-container'>
             <Select
-                options={selectStores}
+                options={store}
                 isClearable
                 placeholder="Lojas"
                 classNamePrefix="sales-filter-select"

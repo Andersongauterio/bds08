@@ -1,4 +1,6 @@
 .sales-summary-container {
+    display: flex;
+    flex-direction: column;
     background-color: #FFFF;
     border-radius: 5px;
     margin: 10px;
@@ -18,4 +20,9 @@
 .sales-summary-subtitle {
     color: #8D8D8D;
     font-size: 18px;
+}
+
+.sales-summary-pie-chart {
+    display: flex;
+    padding: auto;
 }

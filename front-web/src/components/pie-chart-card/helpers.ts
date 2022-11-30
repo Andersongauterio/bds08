@@ -11,8 +11,8 @@ export const buildPieChartConfig = (labels: string[] = [], name: string) => {
       offsetY: 0,
       style: {
         color: '#FFF',
-        fontSize: '18px',
-        fontFamily: 'Roboto, sans-serif'
+        fontSize: '16px',
+        fontFamily: 'Ubuntu, sans-serif'
       }
     },
     legend: {
@@ -23,8 +23,8 @@ export const buildPieChartConfig = (labels: string[] = [], name: string) => {
       labels: {
         colors: ['#b4bed2']
       },
-      fontFamily: 'Roboto, sans-serif',
-      fontSize: '18px',
+      fontFamily: 'Ubuntu, sans-serif',
+      fontSize: '16px',
       itemMargin: {
         vertical: 5
       }
@@ -40,7 +40,7 @@ export const buildPieChartConfig = (labels: string[] = [], name: string) => {
           labels: {
             show: true,
             name: {
-              show: true,
+              show: false,
               offsetY: 10,
               formatter: function () {
                 return name;
@@ -49,9 +49,9 @@ export const buildPieChartConfig = (labels: string[] = [], name: string) => {
             total: {
               show: true,
               showAlways: true,
-              fontSize: '24px',
+              fontSize: '16px',
               color: '#ABB1C0',
-              fontFamily: 'Roboto, sans-serif',
+              fontFamily: 'Ubuntu, sans-serif',
               formatter: function () {
                 return '';
               }
@@ -61,7 +61,7 @@ export const buildPieChartConfig = (labels: string[] = [], name: string) => {
       }
     },
     chart: {
-      height: '400px'
+      height: '900px'
     }
   } as ApexOptions;
 };
