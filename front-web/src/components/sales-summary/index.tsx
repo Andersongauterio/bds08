@@ -1,6 +1,6 @@
 import { useEffect, useMemo, useState } from 'react';
 import { buildSalesByStoreChart } from '../../helpers';
-import { FilterData } from '../../types/filterData';
+import { StoreFilterData } from '../../types/filterData';
 import { PieChartConfig } from '../../types/pieChartConfig';
 import { SalesByGender } from '../../types/salesByGender';
 import { SalesSummaryData } from '../../types/salesSummaryData';
@@ -21,7 +21,7 @@ const initialSummary = {
 const SalesSummary = () => {
 
     const [summary, setSummary] = useState<SalesSummaryData>(initialSummary);
-    const [filterData, setFilterData] = useState<FilterData>();
+    const [filterData, setFilterData] = useState<StoreFilterData>();
     const params = useMemo(() => buildFilterParams(filterData), [filterData]);
     const [salesByGender, setSalesByGender] = useState<PieChartConfig>();
 

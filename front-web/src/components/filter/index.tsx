@@ -1,22 +1,35 @@
 import { useEffect, useState } from 'react';
 import Select from 'react-select';
-import { FilterData } from '../../types/filterData';
+import { buildStoreNames } from '../../helpers';
+import { StoreFilterData } from '../../types/filterData';
 import { Store } from '../../types/store';
+import { StoreNames } from '../../types/storeNames';
 import { makeRequest } from '../../utils/request';
 import './styles.css';
 
 type Props = {
-    onFilterChange: (filter: FilterData)=> void
-  };
+    onFilterChange: (filter: StoreFilterData) => void
+};
 
 const Filter = ({ onFilterChange }: Props) => {
+    const [store, setStore] = useState<Store[]>();
+    const [storeNames, setStoreNames] = useState<StoreNames>();
 
-    const [store, setStore] = useState<Store[]>([]);
+    const onChangeStore = (event: React.ChangeEvent<HTMLSelectElement>) => {
+        const selectedStore = event.target.value;
+
+        console.log('Selected Store: ' + selectedStore)
+
+        //setGender(selectedGender);
+        //onFilterChange({ store: selectedStore });
+    }
 
     useEffect(() => {
         makeRequest
-            .get<Store[]>('/stores', {})
+            .get<Store[]>('/stores')
             .then((response) => {
+                //const storeNames = buildStoreNames(response.data);
+                //setStoreNames(storeNames);
                 setStore(response.data);
             })
             .catch(() => {
@@ -26,14 +39,11 @@ const Filter = ({ onFilterChange }: Props) => {
 
     return (
         <div className='sales-filter-container'>
-            <Select
-                options={store}
-                isClearable
-                placeholder="Lojas"
-                classNamePrefix="sales-filter-select"
-                getOptionLabel={(store: Store) => store.name}
-                getOptionValue={(store: Store) => String(store.id)}
-            />
+            <select className='sales-filter-select' onChange={onChangeStore}>
+                {store?.map((store) => (
+                    <option value={store.id}>{store.name}</option>
+                ))}
+            </select>
         </div>
     );
 };

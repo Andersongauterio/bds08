@@ -1,18 +1,14 @@
-import React, { useMemo, useState } from 'react';
+import { useState } from 'react';
 import './App.css';
 import Filter from './components/filter';
 import Navbar from './components/navbar';
 import SalesSummary from './components/sales-summary';
-import { FilterData } from './types/filterData';
-import { buildFilterParams } from './utils/request';
+import { StoreFilterData } from './types/filterData';
 
 function App() {
+  const [filterData, setFilterData] = useState<StoreFilterData>();
 
-  const [filterData, setFilterData] = useState<FilterData>();
-
-  const params = useMemo(() => buildFilterParams(filterData), [filterData]);
-
-  const onFilterChange = (filter: FilterData) => {
+  const onFilterChange = (filter: StoreFilterData) => {
     setFilterData(filter)
   }
 

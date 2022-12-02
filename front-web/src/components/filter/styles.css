@@ -6,8 +6,10 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    padding-left: 10px;
+    padding-right: 10px;
 }
 
 .sales-filter-select__control {
-    width: 280px;
+    width: 200px;
 }

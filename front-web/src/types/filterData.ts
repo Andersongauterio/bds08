@@ -1,5 +1,5 @@
 import { Store } from "./store";
 
-export type FilterData = {
-    store?: Store;
+export type StoreFilterData = {
+    store: Store | null;
 };
