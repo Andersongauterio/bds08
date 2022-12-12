@@ -3,7 +3,7 @@ import './App.css';
 import Filter from './components/filter';
 import Navbar from './components/navbar';
 import SalesSummary from './components/sales-summary';
-import { StoreFilterData } from './types/filterData';
+import { StoreFilterData } from './types/storeFilterData';
 
 function App() {
   const [filterData, setFilterData] = useState<StoreFilterData>();
@@ -15,7 +15,7 @@ function App() {
   return (
     <>
       <Navbar />
-      <Filter onFilterChange={onFilterChange}/>
+      <Filter onSubmitFilter={onFilterChange}/>
       <SalesSummary />
     </>
   );

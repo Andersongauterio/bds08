@@ -1,6 +1,6 @@
 import { useEffect, useMemo, useState } from 'react';
 import { buildSalesByStoreChart } from '../../helpers';
-import { StoreFilterData } from '../../types/filterData';
+import { StoreFilterData } from '../../types/storeFilterData';
 import { PieChartConfig } from '../../types/pieChartConfig';
 import { SalesByGender } from '../../types/salesByGender';
 import { SalesSummaryData } from '../../types/salesSummaryData';

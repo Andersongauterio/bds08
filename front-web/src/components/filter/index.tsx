@@ -1,49 +1,65 @@
+import { AxiosRequestConfig } from 'axios';
 import { useEffect, useState } from 'react';
+import { Controller, useForm } from 'react-hook-form';
 import Select from 'react-select';
-import { buildStoreNames } from '../../helpers';
-import { StoreFilterData } from '../../types/filterData';
 import { Store } from '../../types/store';
-import { StoreNames } from '../../types/storeNames';
+import { StoreFilterData } from '../../types/storeFilterData';
 import { makeRequest } from '../../utils/request';
 import './styles.css';
 
 type Props = {
-    onFilterChange: (filter: StoreFilterData) => void
+    onSubmitFilter: (data: StoreFilterData) => void;
 };
 
-const Filter = ({ onFilterChange }: Props) => {
+
+const Filter = ({ onSubmitFilter }: Props) => {
     const [store, setStore] = useState<Store[]>();
-    const [storeNames, setStoreNames] = useState<StoreNames>();
 
-    const onChangeStore = (event: React.ChangeEvent<HTMLSelectElement>) => {
-        const selectedStore = event.target.value;
+    const { handleSubmit, setValue, getValues, control } =
+        useForm<StoreFilterData>();
 
-        console.log('Selected Store: ' + selectedStore)
-
-        //setGender(selectedGender);
-        //onFilterChange({ store: selectedStore });
-    }
+    const onSubmit = (formData: StoreFilterData) => {
+        onSubmitFilter(formData);
+    };
 
     useEffect(() => {
+        const params: AxiosRequestConfig = {
+            method: 'GET',
+            url: '/stores',
+            withCredentials: true,
+        };
+
         makeRequest
-            .get<Store[]>('/stores')
+            .get<Store[]>('/stores', { params })
             .then((response) => {
-                //const storeNames = buildStoreNames(response.data);
-                //setStoreNames(storeNames);
-                setStore(response.data);
+                setStore(response.data)
             })
             .catch(() => {
-                console.log('Error to fetch stores');
+                console.log('Error to fetch sales by date');
             });
     }, [])
 
+
     return (
         <div className='sales-filter-container'>
-            <select className='sales-filter-select' onChange={onChangeStore}>
-                {store?.map((store) => (
-                    <option value={store.id}>{store.name}</option>
-                ))}
-            </select>
+            <form>
+                <Controller
+                    name="store"
+                    control={control}
+                    render={({ field }) => (
+                        <Select
+                            {...field}
+                            options={store}
+                            isClearable
+                            placeholder="Lojas"
+                            classNamePrefix="sales-filter-select"
+                            getOptionLabel={(store: Store) => store.name}
+                            getOptionValue={(store: Store) => String(store.id)}
+                        />
+                    )}
+                />
+            </form>
+
         </div>
     );
 };
