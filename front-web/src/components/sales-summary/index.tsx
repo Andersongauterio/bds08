@@ -1,13 +1,17 @@
 import { useEffect, useMemo, useState } from 'react';
 import { buildSalesByStoreChart } from '../../helpers';
-import { StoreFilterData } from '../../types/storeFilterData';
 import { PieChartConfig } from '../../types/pieChartConfig';
 import { SalesByGender } from '../../types/salesByGender';
 import { SalesSummaryData } from '../../types/salesSummaryData';
+import { Store } from '../../types/store';
 import { formatPrice } from '../../utils/formatters';
 import { buildFilterParams, makeRequest } from '../../utils/request';
 import PieChartCard from '../pie-chart-card';
 import './styles.css';
+
+export type StoreFilterData = {
+    store: Store | null;
+  };
 
 
 const initialSummary = {

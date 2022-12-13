@@ -3,14 +3,16 @@ import { useEffect, useState } from 'react';
 import { Controller, useForm } from 'react-hook-form';
 import Select from 'react-select';
 import { Store } from '../../types/store';
-import { StoreFilterData } from '../../types/storeFilterData';
 import { makeRequest } from '../../utils/request';
 import './styles.css';
+
+export type StoreFilterData = {
+    store: Store | null;
+};
 
 type Props = {
     onSubmitFilter: (data: StoreFilterData) => void;
 };
-
 
 const Filter = ({ onSubmitFilter }: Props) => {
     const [store, setStore] = useState<Store[]>();
@@ -20,6 +22,16 @@ const Filter = ({ onSubmitFilter }: Props) => {
 
     const onSubmit = (formData: StoreFilterData) => {
         onSubmitFilter(formData);
+    };
+
+    const handleChangeStore = (value: Store) => {
+        setValue('store', value);
+
+        const obj: StoreFilterData = {
+            store: getValues('store'),
+        };
+
+        onSubmitFilter(obj);
     };
 
     useEffect(() => {
@@ -42,7 +54,7 @@ const Filter = ({ onSubmitFilter }: Props) => {
 
     return (
         <div className='sales-filter-container'>
-            <form>
+            <form onSubmit={handleSubmit(onSubmit)}>
                 <Controller
                     name="store"
                     control={control}
@@ -53,6 +65,7 @@ const Filter = ({ onSubmitFilter }: Props) => {
                             isClearable
                             placeholder="Lojas"
                             classNamePrefix="sales-filter-select"
+                            onChange={(value) => handleChangeStore(value as Store)}
                             getOptionLabel={(store: Store) => store.name}
                             getOptionValue={(store: Store) => String(store.id)}
                         />

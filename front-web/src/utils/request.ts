@@ -1,5 +1,9 @@
 import  axios from "axios";
-import { StoreFilterData } from "../types/storeFilterData";
+import { Store } from "../types/store";
+
+export type StoreFilterData = {
+  store: Store | null;
+};
 
 const baseURL = 'http://localhost:8080';
 

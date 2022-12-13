@@ -3,7 +3,11 @@ import './App.css';
 import Filter from './components/filter';
 import Navbar from './components/navbar';
 import SalesSummary from './components/sales-summary';
-import { StoreFilterData } from './types/storeFilterData';
+import { Store } from './types/store';
+
+export type StoreFilterData = {
+  store: Store | null;
+};
 
 function App() {
   const [filterData, setFilterData] = useState<StoreFilterData>();
