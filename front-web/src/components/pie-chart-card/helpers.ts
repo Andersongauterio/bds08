@@ -36,7 +36,7 @@ export const buildPieChartConfig = (labels: string[] = [], name: string) => {
       pie: {
         size: 400,
         donut: {
-          size: '85%',
+          size: '65%',
           labels: {
             show: true,
             name: {
@@ -58,7 +58,7 @@ export const buildPieChartConfig = (labels: string[] = [], name: string) => {
             }
           }
         }
-      }
+      },
     },
     chart: {
       height: '900px'

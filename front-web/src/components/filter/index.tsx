@@ -35,7 +35,7 @@ const Filter = ({ onSubmitFilter }: Props) => {
                 setStore(response.data)
             })
             .catch(() => {
-                console.log('Error to fetch sales by date');
+                console.log('Error to fetch stores');
             });
     }, [])
 

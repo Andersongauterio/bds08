@@ -1,15 +1,23 @@
 .sales-filter-container {
-    background-color: #FFFF;
-    border-radius: 5px;
-    margin: 10px;
-    height: 130px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding-left: 10px;
-    padding-right: 10px;
+  background-color: #ffff;
+  border-radius: 5px;
+  margin: 10px;
+  height: 130px;
+  width: 300px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-left: 10px;
+  padding-right: 10px;
 }
 
 .sales-filter-select__control {
-    width: 200px;
+  width: 250px;
+  font-size: 1em;
+  height: 50px;
+  letter-spacing: -0.015em;
+}
+
+.sales-filter-select__placeholder {
+  color: #8d8d8d !important;
 }
