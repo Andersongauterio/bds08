@@ -21,7 +21,6 @@ const initialSummary = {
 const SalesSummary = ({ store }: Props) => {
 
     const [summary, setSummary] = useState<SalesSummaryData>(initialSummary);
-    const [salesByGender, setSalesByGender] = useState<PieChartConfig>();
 
     return (
         <div className='sales-summary-container'>
@@ -29,12 +28,7 @@ const SalesSummary = ({ store }: Props) => {
                 <h1 className='sales-summary-total-amount'>{formatPrice(summary.sum)} </h1>
                 <h3 className='sales-summary-subtitle'> Total de vendas </h3>
             </div>
-            <div className='sales-summary-pie-chart'>
-                <PieChartCard
-                    name="Lojas"
-                    labels={salesByGender?.labels}
-                    series={salesByGender?.series} />
-            </div>
+           
         </div>
     );
 };

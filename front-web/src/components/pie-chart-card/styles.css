@@ -1,14 +1,13 @@
 .pie-chart-container {
   width: 300px;
   background-color: #ffff;
+  margin-top: 0;
   margin-left: 10px;
   margin-right: 10px;
-  border: 1px solid red;
 }
 
 .pie-chart-card {
   display: flex;
-  border: 1px solid red;
 }
 
 .apexcharts-legend.apexcharts-align-center {
