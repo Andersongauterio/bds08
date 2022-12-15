@@ -10,12 +10,14 @@ type Props = {
 
 const PieChartCard = ({ labels = [], name, series = [] }: Props) => {
   return (
-    <div className="pie-chart-card base-card">
+    <div className="pie-chart-container">
+     
       <ReactApexChart
-        options={buildPieChartConfig(labels, name)}
-        type="donut"
-        width="300px"
-        series={series} />
+          options={buildPieChartConfig(labels, name)}
+          type="donut"
+          width="300px"
+          series={series} />
+
     </div>
   )
 }

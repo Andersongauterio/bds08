@@ -1,19 +1,14 @@
-import { AxiosRequestConfig } from 'axios';
-import { useCallback, useEffect, useMemo, useState } from 'react';
-import { buildSalesByStoreChart } from '../../helpers';
+import { useState } from 'react';
 import { PieChartConfig } from '../../types/pieChartConfig';
-import { SalesByGender } from '../../types/salesByGender';
 import { SalesSummaryData } from '../../types/salesSummaryData';
+import { Store } from '../../types/store';
 import { formatPrice } from '../../utils/formatters';
-import { buildFilterParams, makeRequest } from '../../utils/request';
-import { StoreFilterData } from '../filter';
 import PieChartCard from '../pie-chart-card';
 import './styles.css';
 
-type ControlComponentsData = {
-    filterData: StoreFilterData;
+type Props = {
+    store: Store | null | undefined;
 };
-
 
 const initialSummary = {
     sum: 0,
@@ -23,59 +18,10 @@ const initialSummary = {
     count: 0
 }
 
-const SalesSummary = () => {
-
-    const [controlComponentsData, setControlComponentsData] =
-        useState<ControlComponentsData>({
-            filterData: { store: null },
-        });
-
-    const handleSubmitFilter = (data: StoreFilterData) => {
-        setControlComponentsData({
-            filterData: data,
-        });
-    };
+const SalesSummary = ({ store }: Props) => {
 
     const [summary, setSummary] = useState<SalesSummaryData>(initialSummary);
     const [salesByGender, setSalesByGender] = useState<PieChartConfig>();
-
-    const getSalesByGender = useCallback(() => {
-        const params: AxiosRequestConfig = {
-            params: {
-                storeId: controlComponentsData.filterData.store?.id,
-            },
-        };
-
-        makeRequest
-            .get<SalesByGender[]>('/sales/by-gender', { params })
-            .then((response) => {
-                const newSalesByGender = buildSalesByStoreChart(response.data);
-                setSalesByGender(newSalesByGender);
-            })
-            .catch(() => {
-                console.log('Error to fetch sales by gender');
-            });
-    }, [controlComponentsData]);
-
-    const getSalesSummary = useCallback(() => {
-        const params: AxiosRequestConfig = {
-            params: {
-                storeId: controlComponentsData.filterData.store?.id,
-            },
-        };
-        makeRequest
-            .get<SalesSummaryData>('/sales/summary', { params })
-            .then((response) => {
-                setSummary(response.data);
-            })
-            .catch(() => {
-                console.log('Error to fetch sales by date');
-            });
-    }, [controlComponentsData]);
-
-    useEffect(() => {
-        getSalesByGender();
-      }, [getSalesByGender]);
 
     return (
         <div className='sales-summary-container'>

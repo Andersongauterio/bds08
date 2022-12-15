@@ -1,5 +1,5 @@
 import  axios from "axios";
-import { StoreFilterData } from "../components/filter";
+import { FilterData } from "../components/filter";
 
 const baseURL = 'http://localhost:8080';
 
@@ -8,7 +8,7 @@ export const makeRequest = axios.create({
 });
 
 export const buildFilterParams = (
-  filterData?: StoreFilterData,
+  filterData?: FilterData,
   extraParams?: Record<string, unknown>
 ) => {
   return {

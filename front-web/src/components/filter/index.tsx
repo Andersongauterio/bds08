@@ -6,39 +6,38 @@ import { Store } from '../../types/store';
 import { makeRequest } from '../../utils/request';
 import './styles.css';
 
-export type StoreFilterData = {
-    store: Store | null;
+export type FilterData = {
+    store?: Store;
 };
 
 type Props = {
-    onSubmitFilter: (data: StoreFilterData) => void;
+    onFilterChange: (data: FilterData) => void;
 };
 
-const Filter = ({ onSubmitFilter }: Props) => {
+const Filter = ({ onFilterChange }: Props) => {
     const [store, setStore] = useState<Store[]>();
 
     const { handleSubmit, setValue, getValues, control } =
-        useForm<StoreFilterData>();
+        useForm<FilterData>();
 
-    const onSubmit = (formData: StoreFilterData) => {
-        onSubmitFilter(formData);
+    const onSubmit = (formData: FilterData) => {
+        onFilterChange(formData);
     };
 
     const handleChangeStore = (value: Store) => {
         setValue('store', value);
 
-        const obj: StoreFilterData = {
+        const obj: FilterData = {
             store: getValues('store'),
         };
 
-        onSubmitFilter(obj);
+        onFilterChange(obj);
     };
 
     useEffect(() => {
         const params: AxiosRequestConfig = {
             method: 'GET',
-            url: '/stores',
-            withCredentials: true,
+            url: '/stores'
         };
 
         makeRequest
@@ -72,7 +71,6 @@ const Filter = ({ onSubmitFilter }: Props) => {
                     )}
                 />
             </form>
-
         </div>
     );
 };

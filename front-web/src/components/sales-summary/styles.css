@@ -1,10 +1,12 @@
 .sales-summary-container {
     display: flex;
-    flex-direction: column;
     background-color: #FFFF;
     border-radius: 5px;
-    margin: 10px;
-    height: 517px;
+    margin-left: 10px;
+    margin-right: 10px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    height: 150px;
     width: 300px;
     padding: 30px 15px;
 }
@@ -21,9 +23,4 @@
 .sales-summary-subtitle {
     color: #8D8D8D;
     font-size: 18px;
-}
-
-.sales-summary-pie-chart {
-    display: flex;
-    padding: auto;
 }
