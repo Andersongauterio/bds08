@@ -1,5 +1,3 @@
-
-
 export type SalesSummaryData = {
     sum: number;
     min: number;

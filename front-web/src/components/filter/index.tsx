@@ -50,7 +50,6 @@ const Filter = ({ onFilterChange }: Props) => {
             });
     }, [])
 
-
     return (
         <div className='sales-filter-container'>
             <form onSubmit={handleSubmit(onSubmit)}>

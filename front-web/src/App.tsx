@@ -1,4 +1,3 @@
-import { AxiosRequestConfig } from 'axios';
 import { useEffect, useMemo, useState } from 'react';
 import './App.css';
 import Filter, { FilterData } from './components/filter';
@@ -8,13 +7,11 @@ import SalesSummary from './components/sales-summary';
 import { buildSalesByStoreChart } from './helpers';
 import { PieChartConfig } from './types/pieChartConfig';
 import { SalesByGender } from './types/salesByGender';
-import { SalesSummaryData } from './types/salesSummaryData';
 import { buildFilterParams, makeRequest } from './utils/request';
 
 function App() {
   const [filterData, setFilterData] = useState<FilterData>();
   const [salesByGender, setSalesByGender] = useState<PieChartConfig>();
-  const [summary, setSummary] = useState<SalesSummaryData>();
 
   const params = useMemo(() => buildFilterParams(filterData), [filterData]);
 
@@ -30,19 +27,7 @@ function App() {
       });
   }, [params]);
 
-  useEffect(() => {
-    makeRequest
-      .get<SalesSummaryData>('/sales/summary', { params })
-      .then((response) => {
-        setSummary(response.data);
-      })
-      .catch(() => {
-        console.log('Error to fetch sales by date');
-      });
-  }, [params]);
-
   const onFilterChange = (filter: FilterData) => {
-    console.log(filter);
     setFilterData(filter)
   }
 
@@ -50,7 +35,7 @@ function App() {
     <>
       <Navbar />
       <Filter onFilterChange={onFilterChange} />
-      <SalesSummary store={filterData?.store} />
+      <SalesSummary filterData={filterData} />
       <PieChartCard
         name="Lojas"
         labels={salesByGender?.labels}

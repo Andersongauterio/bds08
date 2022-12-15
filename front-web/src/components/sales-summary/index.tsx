@@ -1,13 +1,12 @@
-import { useState } from 'react';
-import { PieChartConfig } from '../../types/pieChartConfig';
+import { useEffect, useMemo, useState } from 'react';
 import { SalesSummaryData } from '../../types/salesSummaryData';
-import { Store } from '../../types/store';
 import { formatPrice } from '../../utils/formatters';
-import PieChartCard from '../pie-chart-card';
+import { buildFilterParams, makeRequest } from '../../utils/request';
+import { FilterData } from '../filter';
 import './styles.css';
 
 type Props = {
-    store: Store | null | undefined;
+    filterData?: FilterData;
 };
 
 const initialSummary = {
@@ -18,9 +17,22 @@ const initialSummary = {
     count: 0
 }
 
-const SalesSummary = ({ store }: Props) => {
-
+const SalesSummary = ({filterData}: Props) => {
     const [summary, setSummary] = useState<SalesSummaryData>(initialSummary);
+    const params = useMemo(() => buildFilterParams(filterData), [filterData]);
+
+    useEffect(() => {
+        debugger;
+        makeRequest
+          .get<SalesSummaryData>('/sales/summary', { params })
+          .then((response) => {
+            setSummary(response.data);
+            console.log("Sales Sumary: " + response.data);
+          })
+          .catch(() => {
+            console.log('Error to fetch sales by date');
+          });
+      }, [params]);
 
     return (
         <div className='sales-summary-container'>
