@@ -22,12 +22,10 @@ const SalesSummary = ({filterData}: Props) => {
     const params = useMemo(() => buildFilterParams(filterData), [filterData]);
 
     useEffect(() => {
-        debugger;
         makeRequest
           .get<SalesSummaryData>('/sales/summary', { params })
           .then((response) => {
             setSummary(response.data);
-            console.log("Sales Sumary: " + response.data);
           })
           .catch(() => {
             console.log('Error to fetch sales by date');

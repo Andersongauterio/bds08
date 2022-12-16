@@ -34,12 +34,16 @@ function App() {
   return (
     <>
       <Navbar />
-      <Filter onFilterChange={onFilterChange} />
-      <SalesSummary filterData={filterData} />
-      <PieChartCard
-        name="Lojas"
-        labels={salesByGender?.labels}
-        series={salesByGender?.series} />
+      <div className="app-container">
+        <Filter onFilterChange={onFilterChange} />
+        <div className="app-sales-summary">
+          <SalesSummary filterData={filterData} />
+          <PieChartCard
+            name="Lojas"
+            labels={salesByGender?.labels}
+            series={salesByGender?.series} />
+        </div>
+      </div>
     </>
   );
 }

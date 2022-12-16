@@ -1,17 +1,22 @@
-@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&family=Ubuntu:wght@400;700&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&family=Ubuntu:wght@400;700&display=swap");
 
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: 'Ubuntu', 'sans-serif';
+  font-family: "Ubuntu", "sans-serif";
 }
 
 :root {
-  --primary-color: #334AC3;
+  --primary-color: #334ac3;
 }
 
-h1, h2, h3, h4, h5, h6 {
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
   font-weight: bold;
 }
 
@@ -21,11 +26,23 @@ ul {
   padding: 0;
 }
 
-a, a:hover {
+a,
+a:hover {
   text-decoration: none;
   color: unset;
 }
 
 body {
-  background-color: #E5E5E5;
+  background-color: #e5e5e5;
+  padding: 10px;
+}
+
+.app-container {
+  padding: 0;
+}
+
+@media (min-width: 1200px) {
+  .app-sales-summary {
+    display: flex;
+  }
 }
